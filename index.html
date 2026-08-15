@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMARTAGRO — Smart Crop Advisory System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= AUTH SCREEN ================= -->
+<div id="authScreen">
+  <div class="auth-wrap">
+    <div class="auth-hero">
+      <div>
+        <div class="eyebrow">Krishi Udhavi &nbsp;·&nbsp; Digital Advisory</div>
+        <h1>SMARTAGRO</h1>
+        <p>Soil-to-harvest guidance for small and marginal farmers — crop selection, fertilizer dosage, pest alerts and yield estimates, built for the field, not the boardroom.</p>
+      </div>
+      <div class="hero-stats">
+        <div><b>12</b><span>crops modeled</span></div>
+        <div><b>10</b><span>advisory modules</span></div>
+        <div><b>EN/TA</b><span>bilingual</span></div>
+      </div>
+    </div>
+    <div class="auth-form">
+      <div class="tabs">
+        <button id="tabLogin" class="active" onclick="switchAuthTab('login')">Login</button>
+        <button id="tabRegister" onclick="switchAuthTab('register')">Register</button>
+      </div>
+
+      <div id="loginPane">
+        <h3 style="font-size:16px;margin-bottom:14px;">Welcome back</h3>
+        <div class="field"><label>Email or Phone</label><input id="loginId" placeholder="you@example.com or 98765xxxxx"></div>
+        <div class="field"><label>Password</label><input id="loginPw" type="password" placeholder="••••••••"></div>
+        <div class="err" id="loginErr"></div>
+        <button class="btn-primary" id="loginBtn" onclick="doLogin()">Log in</button>
+        <button class="admin-link" onclick="openAdminLogin()">Admin login →</button>
+      </div>
+
+      <div id="registerPane" class="hidden">
+        <h3 style="font-size:16px;margin-bottom:14px;">Create your farmer account</h3>
+        <div class="field"><label>Full name</label><input id="regName" placeholder="A. Muthu"></div>
+        <div class="form-row">
+          <div class="field"><label>Email</label><input id="regEmail" placeholder="you@example.com"></div>
+          <div class="field"><label>Phone</label><input id="regPhone" placeholder="98765 43210"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Village / Location</label><input id="regLoc" placeholder="e.g. Salem, Tamil Nadu"></div>
+          <div class="field"><label>Preferred language</label>
+            <select id="regLang"><option value="en">English</option><option value="ta">தமிழ்</option></select>
+          </div>
+        </div>
+        <div class="field"><label>Password</label><input id="regPw" type="password" placeholder="Minimum 4 characters"></div>
+        <div class="err" id="regErr"></div>
+        <button class="btn-primary" id="regBtn" onclick="doRegister()">Create account</button>
+      </div>
+
+      <div id="adminPane" class="hidden">
+        <h3 style="font-size:16px;margin-bottom:14px;">Admin sign-in</h3>
+        <div class="field"><label>Username</label><input id="adminUser" placeholder="admin"></div>
+        <div class="field"><label>Password</label><input id="adminPw" type="password" placeholder="••••••••"></div>
+        <div class="err" id="adminErr"></div>
+        <button class="btn-primary" onclick="doAdminLogin()">Enter admin panel</button>
+        <button class="admin-link" onclick="switchAuthTab('login')">← Back to farmer login</button>
+        <p class="small-note">Default credentials: <b>admin</b> / <b>admin123</b></p>
+      </div>
+      <p class="small-note" id="cloudStatus">Connecting to cloud storage…</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= APP SHELL ================= -->
+<div id="appShell">
+  <div class="sidebar">
+    <div class="brand">
+      <svg class="leaf-mark" viewBox="0 0 24 24" fill="none"><path d="M4 20C4 20 3 8 12 4C21 8 20 20 20 20C14 17 10 17 4 20Z" fill="#D9A441"/><path d="M4 20C9 15 15 15 20 20" stroke="#28492F" stroke-width="1.4"/></svg>
+      <div><b>SMARTAGRO</b><small>SMART CROP ADVISORY</small></div>
+    </div>
+    <ul class="navlist" id="navList"></ul>
+    <div class="sidebar-foot">
+      <div id="sideUserName">—</div>
+      <button onclick="logout()">Log out</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar no-print">
+      <div>
+        <h2 id="viewTitle">Dashboard</h2>
+        <div class="sub" id="viewSub"></div>
+      </div>
+      <div class="top-actions">
+        <div class="langtoggle">
+          <button id="langEnBtn" class="active" onclick="setLang('en')">EN</button>
+          <button id="langTaBtn" onclick="setLang('ta')">TA</button>
+        </div>
+        <button class="bell" id="bellBtn" onclick="toggleNotif()">🔔<span class="dot"></span></button>
+      </div>
+    </div>
+    <div class="notifpanel hidden" id="notifPanel">
+      <h4>Alerts &amp; Notifications</h4>
+      <div id="notifList"></div>
+    </div>
+    <div class="view" id="viewRoot"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
