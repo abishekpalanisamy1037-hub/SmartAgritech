@@ -103,15 +103,15 @@ AgriTwin/
 └── README.md
 ▶️ How to Run
 Clone the repository:
-git clone https://github.com/your-username/AgriTwin.git
+gh repo clone abishekpalanisamy1037-hub/SmartAgro
 Open the project folder.
 Open index.html in your browser.
 Explore the AgriTwin dashboard and features.
 👥 Team
-Project: AgriTwin
+Project: SmartAgro
 Domain: Smart Agriculture / AI
 Focus: Crop Disease & Pest Management
 📜 License
 This project is developed for educational, innovation, and hackathon purposes.
-🌱 AgriTwin
+🌱 SmartAgro
 “Detect Early. Decide Smart. Grow Better.”
